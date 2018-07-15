@@ -21,20 +21,6 @@ class SamlIdpController < SamlIdp::IdpController
 
   def idp_make_saml_response(user)
     encode_SAMLResponse(user.email, {audience_uri: 'http://localhost:7000', attributes: { userID: user.id, businessID: user.business_id, profileID: user.profile_id, apiToken: SecureRandom.uuid } })
-  #     , attributes_provider: %[<saml:AttributeStatement>
-  #     <saml:Attribute Name="userID">
-  #       <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">#{user.user_id}</saml:AttributeValue>
-  #     </saml:Attribute>
-  #     <saml:Attribute Name="businessID">
-  #       <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">#{user.business_id}</saml:AttributeValue>
-  #     </saml:Attribute>
-  #     <saml:Attribute Name="profileID">
-  #       <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">#{user.profile_id}</saml:AttributeValue>
-  #     </saml:Attribute>
-  #     <saml:Attribute Name="apiToken">
-  #       <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">#{SecureRandom.uuid}</saml:AttributeValue>
-  #     </saml:Attribute>
-  #   </saml:AttributeStatement>]
   end
 
   def encode_SAMLResponse(name_id, opts = {})
