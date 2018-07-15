@@ -1,0 +1,24 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+
+development:
+  <<: *default
+  database: idp_mock_dev
+  host: localhost
+  username: idp_mock_dev
+  password: idp_mock_dev
+  port: 3306
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: idp_mock_test
+
+production:
+  <<: *default
+  url:  <%=  ENV['MYSQL2_URL'] %>
+  database: <%=  ENV['MYSQL_HOST'] %>
+  pool: 5
