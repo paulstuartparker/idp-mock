@@ -20,7 +20,7 @@ class SamlIdpController < SamlIdp::IdpController
   end
 
   def idp_make_saml_response(user)
-    encode_SAMLResponse(user.email, {audience_uri: 'https://centralized-whale-6.app.uat.maestrano.io', attributes: { userID: user.id, businessID: user.business_id, profileID: user.profile_id, apiToken: SecureRandom.uuid } })
+    encode_SAMLResponse(user.email, {audience_uri: ENV['SERVICE_PROVIDER_URL'], attributes: { userID: user.id, businessID: user.business_id, profileID: user.profile_id, apiToken: SecureRandom.uuid } })
   end
 
   def encode_SAMLResponse(name_id, opts = {})
